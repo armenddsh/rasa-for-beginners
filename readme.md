@@ -1,4 +1,4 @@
-# Init
+# Rasa for beginners (demo)
 
 Create a new virtual environment by choosing a Python interpreter and making a ./venv directory to hold it:
 ```
@@ -28,4 +28,9 @@ rasa train
 Rasa run
 ```
 rasa shell
+```
+
+Rasa interactive
+```
+rasa interactive
 ```
