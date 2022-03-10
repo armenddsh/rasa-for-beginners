@@ -1,0 +1,46 @@
+FROM ubuntu:20.04
+
+# set working directory
+WORKDIR /app
+
+# set build-time env
+ARG RASA_VERSION
+ARG RASA_X_VERSION
+ARG PYTHON_VERSION
+ARG ENV_NAME
+
+# set run-time env
+ENV RASA_VERSION $RASA_VERSION
+ENV RASA_X_VERSION $RASA_X_VERSION
+ENV PYTHON_VERSION $PYTHON_VERSION
+
+# install python
+RUN apt update
+RUN apt install software-properties-common -y
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt update
+RUN apt install python3.8
+
+# install pip
+RUN apt install python3-pip -y
+
+# install additional packages
+RUN apt-get install pkg-config libxml2-dev libxmlsec1-dev libxmlsec1-openssl -y
+
+# install rasa
+RUN pip3 install Cryptography==3.3.1
+
+RUN pip3 install --upgrade pip==20.2
+RUN pip3 install rasa[full]==$RASA_VERSION
+
+RUN pip3 install -U pip
+RUN pip3 install rasa-x==$RASA_X_VERSION --extra-index-url https://pypi.rasa.com/simple
+
+RUN pip3 install yamllint
+
+# increase rasa timeout when calling actions
+RUN sed -i 's/DEFAULT_STREAM_READING_TIMEOUT_IN_SECONDS = 10/DEFAULT_STREAM_READING_TIMEOUT_IN_SECONDS = 1000/g' /usr/local/lib/python3.8/dist-packages/rasa/core/channels/console.py
+
+# export ports
+EXPOSE 5002
+EXPOSE 5005

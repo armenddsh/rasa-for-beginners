@@ -1,0 +1,35 @@
+# Extend the official Rasa SDK image
+ARG RASA_SDK_VERSION=$RASA_SDK_VERSION
+FROM rasa/rasa-sdk:$RASA_SDK_VERSION
+
+USER root
+
+#RUN apt-get update -qq && \
+#    apt-get install -y  build-essential && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+#RUN gcc --version 
+
+# Use subdirectory as working directory
+WORKDIR /app
+
+# Copy any additional custom requirements, if necessary (uncomment next line)
+COPY requirements-actions.txt ./
+
+# Change back to root user to install dependencies
+USER root
+
+# Install extra requirements for actions code, if necessary (uncomment next line)
+#RUN pip install Cython
+RUN pip install -r requirements-actions.txt
+
+# Copy actions folder to working directory
+COPY ./actions /app/actions
+COPY ./data /app/data
+
+# By best practices, don't run the code with root user
+#USER 1001
+
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["start", "--debug", "--actions", "actions"]

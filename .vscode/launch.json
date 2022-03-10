@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Rasa Shell",
+            "request": "launch",
+            "type": "node-terminal",
+            "command": "docker-compose run --rm --name rasa rasa",
+        }
+    ]
+}

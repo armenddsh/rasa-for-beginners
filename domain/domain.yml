@@ -1,0 +1,25 @@
+version: "2.0"
+
+intents:
+  - greet
+  - joke
+  - goodbye
+
+entities:
+  - name
+
+responses:
+  utter_greet:
+    - text: "Pershendetje i/e nderuar"
+  utter_joke:
+    - text: "Ka qene hasa dhe hysa .."
+  utter_goodbye:
+    - text: "Gjitha te mirat.."
+  utter_what_can_i_help_you:
+    - text: "Si mund t'ju ndihmoje ?"
+  utter_default:
+    - text: "Me vjen keq por nuk e kuptova ! A mund te perseritni ?"
+
+session_config:
+  session_expiration_time: 60  # value in minutes
+  carry_over_slots_to_new_session: true
