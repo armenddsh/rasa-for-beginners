@@ -1,0 +1,34 @@
+{
+    "tasks": [
+        {
+            "label": "rasa-shell-build",
+            "type": "shell",
+            "command": "docker-compose build rasa",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
+            },
+            "promptOnClose": false
+        },
+        {
+            "label": "rasa-shell-down",
+            "type": "shell",
+            "command": "docker-compose down rasa",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
+            },
+            "promptOnClose": false
+        }
+    ]
+}

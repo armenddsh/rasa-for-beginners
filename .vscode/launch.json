@@ -5,7 +5,9 @@
             "name": "Run Rasa Shell",
             "request": "launch",
             "type": "node-terminal",
-            "command": "docker-compose run --rm --name rasa rasa",
+            "preLaunchTask": "rasa-shell-build",
+            "postDebugTask": "rasa-shell-down",
+            "command": "docker-compose run --name rasa rasa",
         }
     ]
 }

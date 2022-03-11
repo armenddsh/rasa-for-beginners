@@ -9,7 +9,7 @@ services:
         - RASA_VERSION=$RASA_VERSION
         - RASA_X_VERSION=$RASA_X_VERSION
         - PYTHON_VERSION=$PYTHON_VERSION
-    container_name: rasa-cpu
+    container_name: rasa
     volumes:
       - .:/app
     stdin_open: true
